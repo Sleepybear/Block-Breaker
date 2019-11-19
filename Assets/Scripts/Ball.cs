@@ -47,7 +47,6 @@ public class Ball : MonoBehaviour
                 mouseDir = mouseDir / Mathf.Abs(mouseDir); // should become 1 or -1 depending on direction
             }
             var vector = new Vector2(5f * mouseDir, launchSpeed);
-            Debug.Log(vector);
             GetComponent<Rigidbody2D>().velocity = vector;
         }
     }

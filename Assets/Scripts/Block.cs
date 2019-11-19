@@ -9,7 +9,14 @@ public class Block : MonoBehaviour
     [SerializeField] int health = 1;
     [SerializeField] Sprite[] damagedSprites;
 
+    Level level;
     int currentSprite = 0;
+
+    private void Start()
+    {
+        level = FindObjectOfType<Level>();
+        level.AddBlock();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -28,7 +35,12 @@ public class Block : MonoBehaviour
 
     private void DestroyBlock()
     {
-        // TODO see if last object alive
+        level.DestroyBlock();
+        if(level.LevelCleared())
+        {
+            //TODO show win message with button to click, or auto go to next level?
+            FindObjectOfType<SceneLoader>().LoadNext();
+        }
         Destroy(gameObject);
     }
 }
