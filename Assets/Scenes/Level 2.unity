@@ -7580,6 +7580,11 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4123187768789332568, guid: f944c0bb413e9ab42b356dfa9dccae76,
+        type: 3}
+      propertyPath: NextLevelIndex
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f944c0bb413e9ab42b356dfa9dccae76, type: 3}
 --- !u!1001 &8332365993014530772
