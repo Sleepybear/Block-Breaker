@@ -39,7 +39,7 @@ public class Block : MonoBehaviour
         if(level.LevelCleared())
         {
             //TODO show win message with button to click, or auto go to next level?
-            FindObjectOfType<SceneLoader>().LoadNext();
+            FindObjectOfType<GameSession>().LoadNext();
         }
         Destroy(gameObject);
     }

@@ -354,7 +354,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5412731697204814045}
   - component: {fileID: 8186884878330079102}
-  - component: {fileID: 4123187768789332568}
   m_Layer: 0
   m_Name: Play Area
   m_TagString: Untagged
@@ -392,17 +391,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa13c982683ef04d93fbfdbaf628764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4123187768789332568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5412731697204814046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c11facb35e767c047b3ce6b7e8ab4b60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EndGameSceneIndex: 1
-  NextLevelIndex: 2

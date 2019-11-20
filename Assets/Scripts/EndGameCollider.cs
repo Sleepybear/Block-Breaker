@@ -6,7 +6,7 @@ public class EndGameCollider : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneLoader loader = FindObjectOfType<SceneLoader>();
+        GameSession loader = FindObjectOfType<GameSession>();
         loader.EndGame();
     }
 }
