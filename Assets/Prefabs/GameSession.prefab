@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 566629696}
   - component: {fileID: 566629695}
   - component: {fileID: 566629694}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Scoreboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 1748649831}
   - component: {fileID: 1748649833}
   - component: {fileID: 1748649832}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

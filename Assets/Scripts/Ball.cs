@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
 
     [SerializeField] Paddle paddle;
     [SerializeField] float launchSpeed = 10f;
+    [SerializeField] AudioClip wallHitVFX;
 
     private bool isSticky = true; // Starting sticky to true, might make powerup to enable sticky mid game
     private Vector2 paddleToBall;
@@ -29,7 +30,15 @@ public class Ball : MonoBehaviour
       
 
     }
-    
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Wall" && wallHitVFX != null)
+        {
+            GetComponent<AudioSource>().PlayOneShot(wallHitVFX);
+        }
+    }
+
     public void StickBallToPaddle()
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
