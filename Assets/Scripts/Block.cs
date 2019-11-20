@@ -17,9 +17,9 @@ public class Block : MonoBehaviour
 
     private void Start()
     {
-        if (!isBreakable)
+        level = FindObjectOfType<Level>();
+        if (isBreakable)
         {
-            level = FindObjectOfType<Level>();
             level.AddBlock();
         }
     }

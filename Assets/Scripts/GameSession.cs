@@ -32,6 +32,16 @@ public class GameSession : MonoBehaviour
         totalLevels = SceneManager.sceneCountInBuildSettings - 2;
     }
 
+    private void Update()
+    {
+        if(Debug.isDebugBuild)
+        {
+            if(Input.GetKeyDown(KeyCode.Tab))
+            {
+                LoadNext();
+            }
+        }
+    }
     public void StartGame()
     {
         scoreDisplay.enabled = true;
