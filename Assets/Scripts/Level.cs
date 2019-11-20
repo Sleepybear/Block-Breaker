@@ -11,8 +11,9 @@ public class Level : MonoBehaviour
         totalBlocks++;
     }
 
-    public void DestroyBlock()
+    public void DestroyBlock(int points)
     {
+        FindObjectOfType<GameSession>().AddToScore(points);
         totalBlocks--;
     }
 

@@ -125,3 +125,5 @@ MonoBehaviour:
   damagedSprites:
   - {fileID: 21300000, guid: c2beb63a56509554a8fde4f2d9f717d7, type: 3}
   - {fileID: 21300000, guid: 6d4a1884282a37944a60555d7bbd9251, type: 3}
+  destroyVFX: {fileID: 19800000, guid: 7d846c02296ef4dc4abff04ce3e5262c, type: 3}
+  points: 48

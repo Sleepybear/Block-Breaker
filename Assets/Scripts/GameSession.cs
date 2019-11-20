@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using System;
 
 public class GameSession : MonoBehaviour
 {
     [SerializeField] int endGameSceneIndex;
     [SerializeField] int firstLevelIndex;
+    [SerializeField] TextMeshProUGUI scoreDisplay;
 
-    private int totalLevels, currentLevel;
+    private int totalLevels, currentLevel, currentScore;
 
     private void Awake()
     {
@@ -19,21 +22,42 @@ public class GameSession : MonoBehaviour
             Destroy(gameObject);
         } else
         {
+            scoreDisplay.enabled = false;
             DontDestroyOnLoad(gameObject);
         }
     }
 
+    private void Start()
+    {
+        totalLevels = SceneManager.sceneCountInBuildSettings - 2;
+    }
+
     public void StartGame()
     {
+        scoreDisplay.enabled = true;
+        this.currentLevel = 1;
+        this.currentScore = 0;
+        UpdateScoreText();
         SceneManager.LoadScene(firstLevelIndex);
-        totalLevels = SceneManager.sceneCountInBuildSettings - 2;
-        currentLevel = 1;
     }
+
+    private void UpdateScoreText()
+    {
+        scoreDisplay.text = currentScore.ToString();
+    }
+
+    public void AddToScore(int points)
+    {
+        currentScore += points;
+        UpdateScoreText();
+    }
+
     public void LoadNext()
     {
         if(currentLevel == totalLevels)
         {
             SceneManager.LoadScene(firstLevelIndex);
+            currentLevel = 1;
         } else
         {
             currentLevel++;

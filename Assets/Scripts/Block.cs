@@ -8,6 +8,8 @@ public class Block : MonoBehaviour
     [SerializeField] AudioClip damageSound;
     [SerializeField] int health = 1;
     [SerializeField] Sprite[] damagedSprites;
+    [SerializeField] ParticleSystem destroyVFX;
+    [SerializeField] int points = 32;
 
     Level level;
     int currentSprite = 0;
@@ -25,7 +27,7 @@ public class Block : MonoBehaviour
         }
         if(--health == 0)
         {
-            DestroyBlock();
+            DestroyBlock(this.points);
         } else
         {
             GetComponent<SpriteRenderer>().sprite = damagedSprites[currentSprite];
@@ -33,10 +35,12 @@ public class Block : MonoBehaviour
         }
     }
 
-    private void DestroyBlock()
+    private void DestroyBlock(int points)
     {
-        level.DestroyBlock();
-        if(level.LevelCleared())
+        level.DestroyBlock(points);
+        ParticleSystem particles = GameObject.Instantiate(destroyVFX, transform.position, transform.rotation);
+        Destroy(particles.gameObject, 2f);
+        if(level.LevelCleared()) // Maybe move this to Level.cs? Makes more sense for the level to be checking if it's cleared.
         {
             //TODO show win message with button to click, or auto go to next level?
             FindObjectOfType<GameSession>().LoadNext();
