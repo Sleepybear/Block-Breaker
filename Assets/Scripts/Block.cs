@@ -10,20 +10,28 @@ public class Block : MonoBehaviour
     [SerializeField] Sprite[] damagedSprites;
     [SerializeField] ParticleSystem destroyVFX;
     [SerializeField] int points = 32;
+    [SerializeField] bool isBreakable = true;
 
     Level level;
     int currentSprite = 0;
 
     private void Start()
     {
-        level = FindObjectOfType<Level>();
-        level.AddBlock();
+        if (!isBreakable)
+        {
+            level = FindObjectOfType<Level>();
+            level.AddBlock();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(damageSound != null) { // TODO Create the damage sound (do I want diff sound for dmg vs. death)?
             AudioSource.PlayClipAtPoint(damageSound, Camera.main.transform.position);
+        }
+        if( !isBreakable )
+        {
+            return;
         }
         if(--health == 0)
         {
