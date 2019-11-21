@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-    [SerializeField] AudioClip damageSound, deathSound;
+    [SerializeField] AudioClip deathSound;
     [SerializeField] int health = 1;
     [SerializeField] Sprite[] damagedSprites;
     [SerializeField] ParticleSystem destroyVFX;
     [SerializeField] int points = 32;
-    [SerializeField] bool isBreakable = true;
+    [SerializeField] bool breakable = true;
 
     Level level;
     int currentSprite = 0;
@@ -18,7 +18,7 @@ public class Block : MonoBehaviour
     private void Start()
     {
         level = FindObjectOfType<Level>();
-        if (isBreakable)
+        if (isBreakable())
         {
             level.AddBlock();
         }
@@ -27,9 +27,9 @@ public class Block : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if( !isBreakable )
+        if( !isBreakable() )
         {
-            PlayDamagedSound();
+            // Just collide, do nothing else
             return;
         }
         if(--health == 0)
@@ -37,18 +37,14 @@ public class Block : MonoBehaviour
             DestroyBlock(this.points);
         } else
         {
-            PlayDamagedSound();
             GetComponent<SpriteRenderer>().sprite = damagedSprites[currentSprite];
             currentSprite++;
         }
     }
 
-    private void PlayDamagedSound()
+    public bool isBreakable()
     {
-        if (damageSound != null)
-        {
-            GetComponent<AudioSource>().PlayOneShot(damageSound);
-        }
+        return breakable;
     }
 
     private void DestroyBlock(int points)

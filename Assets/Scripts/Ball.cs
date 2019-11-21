@@ -8,15 +8,17 @@ public class Ball : MonoBehaviour
 
     [SerializeField] Paddle paddle;
     [SerializeField] float launchSpeed = 10f;
-    [SerializeField] AudioClip wallHitVFX;
+    [SerializeField] AudioClip wallHitFX, playerHitFX, blockHitFX;
+    
 
     private bool isSticky = true; // Starting sticky to true, might make powerup to enable sticky mid game
     private Vector2 paddleToBall;
-
+    private AudioSource vfxPlayer;
     void Start()
     {
         isSticky = true;
         paddleToBall = transform.position - paddle.transform.position;
+        vfxPlayer = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,9 +35,24 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Wall" && wallHitVFX != null)
+        if(collision.gameObject.tag == "Wall" && wallHitFX != null)
         {
-            GetComponent<AudioSource>().PlayOneShot(wallHitVFX);
+            vfxPlayer.PlayOneShot(wallHitFX);
+           
+        }
+        else if( collision.gameObject.tag == "Player" && playerHitFX != null )
+        {
+            vfxPlayer.PlayOneShot(playerHitFX);
+        }
+        else if ( collision.gameObject.tag == "Block" && blockHitFX != null )
+        {
+            Block b = collision.gameObject.GetComponent<Block>();
+            if(!b.isBreakable())
+            {
+                vfxPlayer.pitch = 0.8f; // Serialize?
+            }
+            vfxPlayer.PlayOneShot(blockHitFX);
+            vfxPlayer.pitch = 1.0f; // Reset
         }
     }
 
