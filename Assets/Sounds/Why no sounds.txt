@@ -1,0 +1,12 @@
+The sound files I am using in my final package are paid assets, and as such I cannot freely share them. 
+
+Currently there are 4 Sound events:
+
+1. Ball hits Paddle/Player
+2. Ball hits Wall
+3. Ball hits Block
+4. Block is Destroyed
+
+You can use the same sound asset for multiple events, you just need to link the asset to the prefabs (Ball and Block) in the Unity editor. 
+
+Please feel free to contact me with questions. 
